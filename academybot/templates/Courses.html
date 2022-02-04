@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <a href="{% url 'academybot:course_add' %}" class="btn btn-primary">Add Course</a>
+    <br>
+    <br>
+    <div class="container">
+        <h3>Active courses</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Course name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Begin</th>
+                <th scope="col">End</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for course in actives %}
+                <tr>
+                    <td>{{ course.course_name }}</td>
+                    <td>{{ course.course_price }}</td>
+                    <td>{{ course.begin_date }}</td>
+                    <td>{{ course.end_date }}</td>
+                    <td><a href="{% url 'academybot:student_by_course' course.id %}" class="btn btn-success">View</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h3>Passive courses</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Course name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Begin</th>
+                <th scope="col">End</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for course in passives %}
+                <tr>
+                    <td>{{ course.course_name }}</td>
+                    <td>{{ course.course_price }}</td>
+                    <td>{{ course.begin_date }}</td>
+                    <td>{{ course.end_date }}</td>
+                    <td><a href="{% url 'academybot:student_by_course' course.id %}" class="btn btn-success">View</a><a href="{% url 'academybot:delete' course.id %}" class="btn btn-danger">DELETE</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+{% endblock content %}

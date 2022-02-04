@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{ student.full_name }}</h4>
+            <p class="card-text">Course: {{ course.course_name }}</p>
+            <p class="card-text">Duration: {{ course.begin_date }} - {{ course.end_date }}.
+                Price: {{ course.course_price }}</p>
+            <h4>Payments</h4>
+            {% if payments != '' %}
+                {% for i in payments %}
+                    <p>{{ i.payment_data }} -- {{ i.amount }}</p>
+                {% endfor %}
+            {% else %}
+                <p>Payments not found</p>
+            {% endif %}
+        </div>
+    </div><br>
+    <a href="{% url 'academybot:payment_add' %}" class="btn btn-primary">Add Payment</a>
+{% endblock content %}

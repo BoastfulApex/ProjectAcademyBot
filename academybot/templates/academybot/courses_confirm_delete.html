@@ -1,0 +1,10 @@
+{% extends 'main.html'%}
+{% load static %}
+{% block content%}
+  <form method="POST">
+    {% csrf_token %}
+    <p> Seryozna o'chirmoqchimisan ??{{course}}</p>
+    <input type="submit" value="E ana o'chiree" class="btn btn-danger">
+  </form>
+
+{% endblock content%}

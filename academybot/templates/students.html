@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <a href="{% url 'academybot:students_add' %}" class="btn btn-primary">Add Student</a>
+    <br>
+    <br>
+    <h3>Students</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Student name</th>
+            <th scope="col">Course</th>
+            <th scope="col">Pyments</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.course }}</td>
+                <td>{{ student.total_payment }}</td>
+                <td><a href="{% url 'academybot:student_info' student.id %}" class="btn btn-success">View informations</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
